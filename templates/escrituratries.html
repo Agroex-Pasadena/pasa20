@@ -1,0 +1,72 @@
+{% extends "basetrigo.html" %}
+{% load staticfiles %}
+
+{% block css-files %}
+  <link rel="stylesheet" href="{% static "css/utilbase.css" %}"/>
+  <link rel="stylesheet" href="{% static "css/analisis.css" %}"/>
+{% endblock %}
+
+{% block content %}
+<!-- FORM -->
+<div id="outer-box" style="display:none;"> <!-- 1 Se le eliminó el style="display:none;" -->
+<div id="preference-box" class="ui existing segment container grid">
+  <div class="two wide column"></div>
+  <form method="post" id="form-escritura" class="ui form twelve wide column" action="{% url 'escrituratries' %}"> 
+  	{% csrf_token %}
+
+    <h2 class="ui header">
+      <i class="lightbulb icon"></i>
+      <div class="content">
+        Última regla generada de trigo por espiga
+      </div>
+    </h2>
+
+    <div class="ui divider"></div>
+
+    <h4 id="supertitulo" class="ui center aligned header">Nombre: {{ enfermedadtriesmaiz.name }} </h4>
+  
+    (enfermedad (ID {{ enfermedadtriesmaiz.id }}) (nombre "{{ enfermedadtriesmaiz.name }}") (planta "{{ enfermedadtriesmaiz.planta }}") (sintoma-aa "{{ enfermedadtriesmaiz.sintomaAA }}") (sintoma-bb "{{ enfermedadtriesmaiz.sintomaBB }}") (sintoma-cc "{{ enfermedadtriesmaiz.sintomaCC }}") (sintoma-dd "{{ enfermedadtriesmaiz.sintomaDD }}") (sintoma-ee "{{ enfermedadtriesmaiz.sintomaEE }}"))
+
+    <div class="ui divider"></div>
+    <br>
+    <div class="inline fields">
+  <!--    <label class="four wide field">Elija la planta</label> -->
+
+      <div class="field" style="display:none;">
+        <label>Elija la planta</label>
+        <input name="plant" id="plant" placeholder="First Name" type="text">
+      </div>
+
+
+    </div>
+
+ 
+    <!-- Mensaje de error -->
+    <div class="ui error message"></div>
+
+    <!-- Boton enviar -->
+    <div class="inline fields">
+
+	<br>
+        <input type="submit" value="OK" />
+        
+    </div>
+
+  </form>
+ 
+</div>
+
+<div id="notification-box">
+          <div id="the-cat-box">
+          </div>
+          <div class="ui blue message" id="the-message">Blue</div>
+        </div>
+
+</div>
+
+{% endblock %}
+
+{% block js-files %}
+<script src="{% static "js/escrituratries.js" %}"></script>
+
+{% endblock %}
